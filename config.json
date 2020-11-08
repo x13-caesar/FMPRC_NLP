@@ -1,0 +1,18 @@
+{
+    "user_id_list": "update_list.txt",
+    "filter": 1,
+    "since_date": "2012-01-01",
+    "write_mode": ["csv"],
+    "original_pic_download": 1,
+    "retweet_pic_download": 0,
+    "original_video_download": 1,
+    "retweet_video_download": 0,
+    "cookie": "_T_WM=90346820189; SL_GWPT_Show_Hide_tmp=1; SL_wptGlobTipTmp=1; TMPTOKEN=6X5VLRbwNks5yeYWCD9AHGFzL04byg8gloaKr2rK8Bdj7UGO93RJ9oAI9bFToAJD; MLOGIN=1; WEIBOCN_FROM=1110106030; ALF=1583699212; SCF=AruLRp79hwwV89-Ocq4tbzeRbBVFVEHWSfEOD78ZfNOBpYM-ooPblY_sZnOHm2vtVQUqQD1WRRaOa4mf_5bDDIA.; SUB=_2A25zObhdDeRhGeBI61cS8i3EyjSIHXVQxdgVrDV6PUJbktAKLVH-kW1NRrtScCtK3jMFTJJGu2UjYaEL5eFAHr3V; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WFpOSGPqnC4hY1GEdrO3RkT5JpX5KzhUgL.Foqceh-0eoeReKn2dJLoIfQLxKqL1-zLB.eLxK-L1KeL1hnLxK.LBK2LB.qLxKqL1-qL1K5LxK.LB.zLB-qLxKML1hBLBoqLxK.L1KBL1h5LxK.LB-BL1hzLxKML1KBLBoMLxK-LB-BL1K5t; SUHB=0XDVKM4LNl1Wt9; SSOLoginState=1581107214; M_WEIBOCN_PARAMS=luicode%3D10000011%26lfid%3D102803%26uicode%3D20000174",
+    "mysql_config": {
+        "host": "localhost",
+        "port": 3306,
+        "user": "root",
+        "password": "123456",
+        "charset": "utf8mb4"
+    }
+}
