@@ -101,85 +101,32 @@ def get_data(column, page_suffix, log):
 
 
 
+def update_text(begin_suffix, log_file, avoid=[]):
+    json_data = json.load(open(log_file, 'r'))
+    for c in json_data.keys():
+        if c in json_data.keys():
+            get_data(c, begin_suffix, log_file)
+    
+
+def add_column(column_name, data_path, column_base, initial_stop_post, log_file='history.json'):
+    json_data = json.load(open(log_file, 'r'))
+    json_data[column_name] = (data_path, column_base, initial_stop_post)
+    with open(log_file, 'w') as f:
+        json.dump(json_data, f, indent=4)
+
 if __name__ == '__main__':
-
-    # '中央文件'栏目
-    data_zywj = '/Users/qiangwenxu/playground/NewChinaNewspeak/data/cpcnews_zywj.csv'
-    base_zywj = 'http://cpc.people.com.cn/GB/67481/431391/431393/'
-    # '重要评论'栏目
-    data_zypl = '/Users/qiangwenxu/playground/NewChinaNewspeak/data/cpcnews_zypl.csv'
-    base_zypl = 'http://theory.people.com.cn/GB/409499/'
-    # '中央精神‘栏目
-    data_zyjs = '/Users/qiangwenxu/playground/NewChinaNewspeak/data/cpcnews_zyjs.csv'
-    base_zyjs = 'http://dangjian.people.com.cn/GB/394443/'
-    # '各地动态'栏目
-    data_gddt = '/Users/qiangwenxu/playground/NewChinaNewspeak/data/cpcnews_gddt.csv'
-    base_gddt = 'http://dangjian.people.com.cn/GB/219967/'
-    # '干部论坛'栏目
-    data_gblt = '/Users/qiangwenxu/playground/NewChinaNewspeak/data/cpcnews_gblt.csv'
-    base_gblt = 'http://dangjian.people.com.cn/GB/132289/'
-    # '评论观点'栏目
-    data_plgd = '/Users/qiangwenxu/playground/NewChinaNewspeak/data/cpcnews_plgd.csv'
-    base_plgd = 'http://dangjian.people.com.cn/GB/394444/'
-    # '学习教育'栏目
-    data_xxjy = '/Users/qiangwenxu/playground/NewChinaNewspeak/data/cpcnews_xxjy.csv'
-    base_xxjy = 'http://dangjian.people.com.cn/GB/141145/'
-    # '专家辅导'栏目
-    data_zjfd = '/Users/qiangwenxu/playground/NewChinaNewspeak/data/cpcnews_zjfd.csv'
-    base_zjfd = 'http://dangjian.people.com.cn/GB/394323/'
-    # '国企党建'栏目
-    data_gqdj = '/Users/qiangwenxu/playground/NewChinaNewspeak/data/cpcnews_gqdj.csv'
-    base_gqdj = 'http://dangjian.people.com.cn/gq/'
-    # '非公党建'栏目
-    data_fgdj = '/Users/qiangwenxu/playground/NewChinaNewspeak/data/cpcnews_fgdj.csv'
-    base_fgdj = 'http://dangjian.people.com.cn/fg/'
-    # '学校党建'栏目
-    data_xxdj = '/Users/qiangwenxu/playground/NewChinaNewspeak/data/cpcnews_xxdj.csv'
-    base_xxdj = 'http://dangjian.people.com.cn/xx/'
-    # '机关党建'栏目
-    data_jgdj = '/Users/qiangwenxu/playground/NewChinaNewspeak/data/cpcnews_jgdj.csv'
-    base_jgdj = 'http://dangjian.people.com.cn/GB/117094/'
-    # '街道社区党建'栏目
-    data_jdsqdj = '/Users/qiangwenxu/playground/NewChinaNewspeak/data/cpcnews_jdsqdj.csv'
-    base_jdsqdj = 'http://dangjian.people.com.cn/GB/117098/'
-    # '军队党建'栏目
-    data_jddj = '/Users/qiangwenxu/playground/NewChinaNewspeak/data/cpcnews_jddj.csv'
-    base_jddj = 'http://dangjian.people.com.cn/GB/117101/'
-    # '农村基层党建'栏目
-    data_ncjcdj = '/Users/qiangwenxu/playground/NewChinaNewspeak/data/cpcnews_ncjcdj.csv'
-    base_ncjcdj= 'http://dangjian.people.com.cn/GB/117100/'
-    # '高层动态'栏目
-    data_gcdt = '/Users/qiangwenxu/playground/NewChinaNewspeak/data/cpcnews_gcdt.csv'
-    base_gcdt = 'http://cpc.people.com.cn/GB/64093/64094/'
-    # '经济社会'栏目
-    data_jjsh = '/Users/qiangwenxu/playground/NewChinaNewspeak/data/cpcnews_jjsh.csv'
-    base_jjsh = 'http://theory.people.com.cn/GB/49154/'
-    # '国际外交'栏目
-    data_gjwj = '/Users/qiangwenxu/playground/NewChinaNewspeak/data/cpcnews_gjwj.csv'
-    base_gjwj = 'http://theory.people.com.cn/GB/136457/'
-    # '学术动态'栏目
-    data_xsdt = '/Users/qiangwenxu/playground/NewChinaNewspeak/data/cpcnews_xsdt.csv'
-    base_xsdt = 'http://theory.people.com.cn/GB/40534/'
-    # '领导活动'栏目
-    data_ldhd = '/Users/qiangwenxu/playground/NewChinaNewspeak/data/cpcnews_ldhd.csv'
-    base_ldhd = 'http://cpc.people.com.cn/GB/64093/117005/'
-
-
-
-    # The log file (keep track of where you've been in each column)
-    log_path = '/Users/qiangwenxu/playground/NewChinaNewspeak/WebCrawler/history.json'
-
-    jsonfile = json.load(open(log_path, 'r'))
-
+    # The starting page suffix
+    BEGIN = 'index1.html'
+    LOG = '/Users/qiangwenxu/playground/NewChinaNewspeak/WebCrawler/history.json'
 
     # Use the following block if you want to add any column
-'''
-    jsonfile['领导活动'] = (data_ldhd, base_ldhd, "")
-    with open(log_path, 'w') as f:
-        json.dump(jsonfile, f, indent=4)
-'''
+    # Example for new_columns:
+    ##  {'专栏名称': ('user/data/abc.csv', "http://theory.people.com.cn/GB/111111/", "")}
+    new_columns = {}
+    if new_columns:
+        for c, (d, base, stop) in new_columns.items():
+            add_column(c, d, base, stop)
+    
+    update_text(BEGIN, LOG)
 
-    begin = 'index1.html'
-    for c in jsonfile.keys():
-        if c in ['高层动态', '经济社会', '国际外交', '学术动态', '领导活动']:
-            get_data(c, begin, log_path)
+
